@@ -22,25 +22,20 @@ If `KIRHA_API_KEY` is not set, stop and tell the user:
 
 ## Step 1 - Discover Verticals
 
-Fetch the current verticals list from the discovery service:
+Fetch the current verticals and providers from the discovery service:
 
-**URL:** `https://discovery.kirha.com/verticals/list.mdx`
+- **Verticals:** `https://discovery.kirha.com/verticals/list.mdx` — all available verticals with slugs, descriptions, and example prompts
+- **Providers:** `https://discovery.kirha.com/providers/list.mdx` — all available providers and their capabilities
 
-Use the WebFetch tool to retrieve this page. It returns all available verticals with their slugs, descriptions, providers, and example prompts.
+Use the WebFetch tool to retrieve these pages. The verticals list tells you which vertical to target; the providers list tells you what data sources are available in each vertical.
 
 ## Step 2 - Select the Right Vertical
 
-Analyze the user's query against the vertical descriptions from Step 1. Pick the single best-matching vertical slug.
+Analyze the user's query against the vertical descriptions and providers from Step 1. Pick the single best-matching vertical slug.
 
 **Selection rules:**
-- Match based on the vertical's description, providers, and example prompts
-- For financial/stock/SEC queries → `company`
-- For blockchain/token/DeFi/wallet queries → `crypto`
-- For academic/clinical/drug/biomedical queries → `medical`
-- For threat/vulnerability/IP/device scanning queries → `cybersec`
-- For ad campaigns/keywords/competitor ads queries → `adtech`
-- For risk/flight/weather/claims queries → `insurance`
-- For current events/articles/sentiment queries → `news`
+- Match based on the vertical's description, providers, and example prompts from the discovery data
+- Use the providers list to understand what data sources each vertical has access to
 
 **If ambiguous:** Fetch the detail page for each candidate vertical at `https://discovery.kirha.com/verticals/{slug}.mdx` to compare provider capabilities. Choose the one whose providers best serve the query. Do NOT ask the user unless it's truly impossible to determine.
 
@@ -56,17 +51,13 @@ curl -s -X POST "https://api.kirha.com/chat/v1/search" \
   -H "Content-Type: application/json" \
   -d '{
     "query": "<refined-query>",
-    "vertical_id": "<selected-vertical-slug>",
-    "summarization": { "enable": true, "model": "kirha-flash" },
-    "include_raw_data": true
+    "vertical_id": "<selected-vertical-slug>"
   }'
 ```
 
 **Before calling:**
 - Refine the user's query to be specific and precise. For example, "btc price" becomes "What is the current Bitcoin (BTC) price in USD?"
 - Always include `vertical_id` — it dramatically improves result quality
-- Keep `summarization.enable: true` with model `kirha-flash` for a ready-to-use summary
-- Keep `include_raw_data: true` so you can extract additional details beyond the summary
 
 **If the search returns empty or poor results:**
 1. Rephrase the query with different keywords

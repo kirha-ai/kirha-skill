@@ -9,10 +9,10 @@ Concrete examples showing the full `/kirha` workflow from query to response.
 **User input:** `/kirha bitcoin price`
 
 ### Step 1 — Discover Verticals
-Fetch `https://discovery.kirha.com/verticals/list.mdx` → receives all 7 verticals with descriptions.
+Fetch `https://discovery.kirha.com/verticals/list.mdx` and `https://discovery.kirha.com/providers/list.mdx` → receives all verticals and providers.
 
 ### Step 2 — Select Vertical
-"Bitcoin price" clearly maps to the **crypto** vertical (slug: `crypto`), which includes Coingecko for token prices and market data.
+"Bitcoin price" is a blockchain/token query → match it against the verticals list to find the one focused on crypto/blockchain data.
 
 ### Step 3 — Call Search API
 ```bash
@@ -22,8 +22,6 @@ curl -s -X POST "https://api.kirha.com/chat/v1/search" \
   -d '{
     "query": "What is the current Bitcoin (BTC) price in USD?",
     "vertical_id": "crypto",
-    "summarization": { "enable": true, "model": "kirha-flash" },
-    "include_raw_data": true
   }'
 ```
 
@@ -54,10 +52,10 @@ Data sourced via Coingecko. As of 2025-02-18 14:30 UTC.
 **User input:** `/kirha GLP-1 clinical trials`
 
 ### Step 1 — Discover Verticals
-Fetch verticals list → identifies **medical** vertical which includes ClinicalTrials, PubMed, and OpenFDA providers.
+Fetch verticals and providers lists → identify which vertical handles biomedical/clinical data.
 
 ### Step 2 — Select Vertical
-"GLP-1 clinical trials" maps directly to **medical** (slug: `medical`). The ClinicalTrials provider specifically handles trial data.
+"GLP-1 clinical trials" is a biomedical/clinical query → match it to the vertical focused on medical research and clinical trial data.
 
 ### Step 3 — Call Search API
 ```bash
@@ -67,8 +65,6 @@ curl -s -X POST "https://api.kirha.com/chat/v1/search" \
   -d '{
     "query": "Active and recruiting clinical trials for GLP-1 receptor agonists",
     "vertical_id": "medical",
-    "summarization": { "enable": true, "model": "kirha-flash" },
-    "include_raw_data": true
   }'
 ```
 
@@ -97,12 +93,12 @@ Data sourced from ClinicalTrials.gov via Kirha.
 This query spans two verticals: **company** (for stock data) and **news** (for latest articles).
 
 ### Step 1 — Discover Verticals
-Fetch verticals list → identifies both `company` (Marketstack for stock data, Sec for filings) and `news` (Web Search, X for articles and media).
+Fetch verticals and providers lists → identify verticals for financial/corporate data and for current events/news.
 
 ### Step 2 — Select Verticals
-Two sequential searches needed:
-1. `company` — for Tesla stock price and financial data
-2. `news` — for latest Tesla news articles
+This is a multi-vertical query. Two sequential searches needed:
+1. The vertical focused on company/financial data — for Tesla stock price and financials
+2. The vertical focused on news/current events — for latest Tesla articles
 
 ### Step 3a — First Search (Company)
 ```bash
@@ -112,8 +108,6 @@ curl -s -X POST "https://api.kirha.com/chat/v1/search" \
   -d '{
     "query": "Tesla (TSLA) current stock price and recent financial performance",
     "vertical_id": "company",
-    "summarization": { "enable": true, "model": "kirha-flash" },
-    "include_raw_data": true
   }'
 ```
 
@@ -125,8 +119,6 @@ curl -s -X POST "https://api.kirha.com/chat/v1/search" \
   -d '{
     "query": "Latest Tesla news and developments this week",
     "vertical_id": "news",
-    "summarization": { "enable": true, "model": "kirha-flash" },
-    "include_raw_data": true
   }'
 ```
 
@@ -161,17 +153,14 @@ TSLA is currently trading at $352.40, up 1.8% today.
 **User input:** `/kirha weather risks for Mediterranean shipping`
 
 ### Step 1 — Discover Verticals
-Fetch verticals list → multiple candidates:
-- **insurance** — weather data, risk analysis, transportation tracking
-- **news** — could have articles about shipping disruptions
-- **company** — could have shipping company data
+Fetch verticals and providers lists → multiple candidates could match: verticals covering weather/risk, news, or company data.
 
 ### Step 2 — Disambiguate
-"Weather risks" + "shipping" strongly aligns with the **insurance** vertical, which explicitly covers "real-time transportation tracking" and "weather" with providers like Open Weather (weather data) and Winston (risk analysis). The query is about assessing operational risk, not reading news or looking up a company.
+"Weather risks" + "shipping" is about operational risk assessment, not reading news or looking up a company. Check the verticals list for one focused on weather, transportation, and risk analysis.
 
-If unsure, the agent fetches `https://discovery.kirha.com/verticals/insurance.mdx` to confirm that Open Weather and Winston can handle weather risk assessment for transportation.
+If unsure, fetch `https://discovery.kirha.com/verticals/{slug}.mdx` for each candidate to compare their providers and confirm which one has weather and risk assessment capabilities.
 
-Selected vertical: **insurance**
+Select the vertical whose providers best handle weather-based risk analysis for transportation.
 
 ### Step 3 — Call Search API
 ```bash
@@ -181,8 +170,6 @@ curl -s -X POST "https://api.kirha.com/chat/v1/search" \
   -d '{
     "query": "Current weather risks and storm warnings affecting Mediterranean Sea shipping routes",
     "vertical_id": "insurance",
-    "summarization": { "enable": true, "model": "kirha-flash" },
-    "include_raw_data": true
   }'
 ```
 
