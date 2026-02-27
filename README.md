@@ -1,12 +1,12 @@
 # Kirha Skill for Claude Code
 
-A Claude Code skill that searches real-time data across 7 verticals using the Kirha platform.
+A Claude Code skill that searches real-time data across multiple verticals using the [Kirha](https://kirha.com) platform.
 
 ## What It Does
 
 The `/kirha` skill lets you query live data directly from Claude Code. When invoked, the agent:
 
-1. Fetches available verticals from the Kirha discovery service
+1. Fetches available verticals from the [Kirha discovery service](https://discovery.kirha.com)
 2. Selects the best vertical for your query
 3. Calls the Kirha Search API with a refined query
 4. Presents structured, sourced results
@@ -21,36 +21,22 @@ The `/kirha` skill lets you query live data directly from Claude Code. When invo
 
 ## Installation
 
-### Personal (all projects)
+### Using the Skills CLI
 
 ```bash
-mkdir -p ~/.claude/skills/kirha
-cp kirha-skill/SKILL.md ~/.claude/skills/kirha/
-cp kirha-skill/verticals-reference.md ~/.claude/skills/kirha/
-cp -r kirha-skill/examples ~/.claude/skills/kirha/
+npx skills add kirha/kirha-skill
 ```
 
-### Project-level
+### Manual — Personal (all projects)
 
 ```bash
-mkdir -p .claude/skills/kirha
-cp kirha-skill/SKILL.md .claude/skills/kirha/
-cp kirha-skill/verticals-reference.md .claude/skills/kirha/
-cp -r kirha-skill/examples .claude/skills/kirha/
+git clone https://github.com/kirha/kirha-skill.git ~/.claude/skills/kirha-skill
 ```
 
-### WebFetch Permission
+### Manual — Project-level
 
-Add `discovery.kirha.com` to your allowed WebFetch domains in `.claude/settings.local.json`:
-
-```json
-{
-  "permissions": {
-    "allow": [
-      "WebFetch(domain:discovery.kirha.com)"
-    ]
-  }
-}
+```bash
+git clone https://github.com/kirha/kirha-skill.git .claude/skills/kirha-skill
 ```
 
 ## Usage
@@ -64,21 +50,17 @@ Add `discovery.kirha.com` to your allowed WebFetch domains in `.claude/settings.
 
 ## Available Verticals
 
-| Vertical | Slug | Key Providers | Use For |
-|---|---|---|---|
-| Crypto | `crypto` | Coingecko, DefiLlama, Dune, Zerion | Token prices, DeFi, wallets, on-chain data |
-| Medical | `medical` | PubMed, ClinicalTrials, OpenFDA, Arxiv | Research papers, trials, drug data |
-| Company | `company` | Sec, Marketstack, Apollo, Linkedin | Stock data, filings, company profiles |
-| News | `news` | Polymarket, X, Web Search, GoogleScholar | Current events, sentiment, predictions |
-| CyberSec | `cybersec` | Shodan, AbuseIPDB, Github | IP scans, vulnerabilities, threat intel |
-| Adtech | `adtech` | Google Ads, Apollo, Firecrawl | Ad campaigns, keywords, competitor ads |
-| Insurance | `insurance` | Open Weather, Aviationstack, Winston | Weather risk, flights, claims analysis |
+Verticals and providers are dynamic. Browse the full list at [discovery.kirha.com](https://discovery.kirha.com).
 
 ## How It Works
 
 The skill uses two Kirha services:
 
-- **Discovery** (`discovery.kirha.com`) — Fetched via WebFetch to get current verticals and provider info
-- **Search API** (`api.kirha.com`) — Called via curl with your API key to execute searches
+- **Discovery** ([discovery.kirha.com](https://discovery.kirha.com)) — Fetched at runtime to get current verticals and provider capabilities
+- **Search API** (`api.kirha.com`) — Called with your API key to execute searches
 
 The agent autonomously picks the right vertical based on your query. For multi-domain queries, it makes sequential searches and combines results.
+
+## License
+
+MIT
