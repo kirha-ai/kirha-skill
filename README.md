@@ -1,10 +1,14 @@
-# Kirha Skill for Claude Code
+<p align="center">
+  <img src="assets/banner.png" alt="Kirha Search Skill" />
+</p>
 
-A Claude Code skill that searches real-time data across multiple verticals using the [Kirha](https://kirha.com) platform.
+# Kirha Search Skill
+
+An [Agent Skill](https://agentskills.io) that searches real-time data across multiple verticals using the [Kirha](https://kirha.com) platform.
 
 ## What It Does
 
-The `/kirha-search` skill lets you query live data directly from Claude Code. When invoked, the agent:
+The `/kirha-search` skill lets you query live data directly from your coding agent. When invoked, the agent:
 
 1. Fetches available verticals from the [Kirha discovery service](https://discovery.kirha.com)
 2. Selects the best vertical for your query
