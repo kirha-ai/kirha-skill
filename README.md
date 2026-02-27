@@ -4,7 +4,7 @@ A Claude Code skill that searches real-time data across multiple verticals using
 
 ## What It Does
 
-The `/kirha` skill lets you query live data directly from Claude Code. When invoked, the agent:
+The `/kirha-search` skill lets you query live data directly from Claude Code. When invoked, the agent:
 
 1. Fetches available verticals from the [Kirha discovery service](https://discovery.kirha.com)
 2. Selects the best vertical for your query
@@ -42,10 +42,10 @@ git clone https://github.com/kirha/kirha-skill.git .claude/skills/kirha-skill
 ## Usage
 
 ```
-/kirha What is the current price of Bitcoin?
-/kirha Latest clinical trials for CRISPR gene therapy
-/kirha Tesla SEC filings and latest news
-/kirha Check if IP 203.0.113.42 has abuse reports
+/kirha-search What is the current price of Bitcoin?
+/kirha-search Latest clinical trials for CRISPR gene therapy
+/kirha-search Tesla SEC filings and latest news
+/kirha-search Check if IP 203.0.113.42 has abuse reports
 ```
 
 ## Available Verticals

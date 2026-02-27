@@ -1,5 +1,5 @@
 ---
-name: kirha
+name: kirha-search
 description: Search real-time data across verticals (crypto, news, medical, cybersec, insurance, adtech, company) using the Kirha platform. Use this when the user needs live data, market prices, research papers, company info, security intelligence, or news.
 allowed-tools: Bash WebFetch
 metadata:

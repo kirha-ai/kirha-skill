@@ -1,12 +1,12 @@
 # Kirha Skill Workflow Examples
 
-Concrete examples showing the full `/kirha` workflow from query to response.
+Concrete examples showing the full `/kirha-search` workflow from query to response.
 
 ---
 
 ## Example 1: Crypto Query
 
-**User input:** `/kirha bitcoin price`
+**User input:** `/kirha-search bitcoin price`
 
 ### Step 1 — Discover Verticals
 Fetch `https://discovery.kirha.com/verticals/list.mdx` and `https://discovery.kirha.com/providers/list.mdx` → receives all verticals and providers.
@@ -49,7 +49,7 @@ Data sourced via Coingecko. As of 2025-02-18 14:30 UTC.
 
 ## Example 2: Medical Query
 
-**User input:** `/kirha GLP-1 clinical trials`
+**User input:** `/kirha-search GLP-1 clinical trials`
 
 ### Step 1 — Discover Verticals
 Fetch verticals and providers lists → identify which vertical handles biomedical/clinical data.
@@ -88,7 +88,7 @@ Data sourced from ClinicalTrials.gov via Kirha.
 
 ## Example 3: Multi-Vertical Query
 
-**User input:** `/kirha Tesla stock and latest news`
+**User input:** `/kirha-search Tesla stock and latest news`
 
 This query spans two verticals: **company** (for stock data) and **news** (for latest articles).
 
@@ -150,7 +150,7 @@ TSLA is currently trading at $352.40, up 1.8% today.
 
 ## Example 4: Ambiguous Query
 
-**User input:** `/kirha weather risks for Mediterranean shipping`
+**User input:** `/kirha-search weather risks for Mediterranean shipping`
 
 ### Step 1 — Discover Verticals
 Fetch verticals and providers lists → multiple candidates could match: verticals covering weather/risk, news, or company data.
