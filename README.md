@@ -34,13 +34,13 @@ npx skills add kirha/kirha-skill
 ### Manual — Personal (all projects)
 
 ```bash
-git clone https://github.com/kirha/kirha-skill.git ~/.claude/skills/kirha-skill
+git clone https://github.com/kirha-ai/kirha-skill.git ~/.claude/skills/kirha-skill
 ```
 
 ### Manual — Project-level
 
 ```bash
-git clone https://github.com/kirha/kirha-skill.git .claude/skills/kirha-skill
+git clone https://github.com/kirha-ai/kirha-skill.git .claude/skills/kirha-skill
 ```
 
 ## Usage
