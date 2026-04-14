@@ -8,3 +8,5 @@
 
 # ...even if they are in subdirectories
 !*/
+
+.claude
