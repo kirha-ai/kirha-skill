@@ -10,7 +10,7 @@
 
 ---
 
-# Kirha CLI Skill
+# Kirha Skill
 
 An [Agent Skill](https://agentskills.io) that gives your agent real-time data access through the [Kirha](https://kirha.com) CLI.
 
