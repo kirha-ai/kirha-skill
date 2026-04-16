@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.png" alt="Kirha CLI Skill" />
+  <img src="assets/banner.png" alt="Kirha Skill" />
 </p>
 
 <p align="center">
