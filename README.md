@@ -16,7 +16,7 @@ An [Agent Skill](https://agentskills.io) that gives your agent real-time data ac
 
 ## What It Does
 
-The `/kirha-cli` skill lets your agent query Kirha, a dynamic catalogue of authoritative data providers, directly from the command line. When invoked, the agent:
+The `/kirha` skill lets your agent query Kirha, a dynamic catalogue of authoritative data providers, directly from the command line. When invoked, the agent:
 
 1. Runs `kirha discovery` to see the current catalogue of verticals and providers
 2. Picks the best-matching vertical for the query dynamically (never hardcoded)
@@ -70,7 +70,7 @@ git clone https://github.com/kirha-ai/kirha-skill.git .claude/skills/kirha-skill
 Invoke the skill explicitly with your question:
 
 ```
-/kirha-cli <your question>
+/kirha <your question>
 ```
 
 The skill may also trigger on its own when the agent decides an authoritative source is needed, but auto-triggering is not guaranteed for every query. If you specifically want Kirha, name it. The agent always discovers the right vertical at runtime, so you never have to specify one.
@@ -84,7 +84,7 @@ The skill drives the [Kirha CLI](https://github.com/kirha-ai/kirha-cli) end-to-e
 - **`kirha task`** does deep multi-step research (takes a few minutes, costs more credits)
 - **`kirha plan`** previews credit cost before running expensive queries
 
-The full workflow, including discovery rules, query refinement, the rediscover-and-retry loop, and error handling, lives in [`skills/kirha-cli/SKILL.md`](skills/kirha-cli/SKILL.md).
+The full workflow, including discovery rules, query refinement, the rediscover-and-retry loop, and error handling, lives in [`skills/kirha/SKILL.md`](skills/kirha/SKILL.md).
 
 ## License
 
