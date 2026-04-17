@@ -11,14 +11,20 @@
 ---
 
 # Kirha Skill
-
+ 
 An [Agent Skill](https://agentskills.io) that gives your agent real-time data access through the [Kirha](https://kirha.com) CLI.
+One auth. The largest network of [S-tier data providers](https://app.kirha.com/providers). The right context for every query.
+
+- **Open planner**: an [open source model](https://huggingface.co/kirha) routes every query.
+- **Multi-source**: one prompt can pull context from several providers at once.
+- **Real-time**: we never sync provider databases. Kirha is just a data router.
+- **Auditable**: every API call is logged in your [Log panel](https://app.kirha.com/logs).
 
 ## What It Does
 
-The `/kirha` skill lets your agent query Kirha, a dynamic catalogue of authoritative data providers, directly from the command line. When invoked, the agent:
+The `/kirha` skill lets your agent query Kirha, a dynamic catalog of authoritative data providers, directly from the command line. When invoked, the agent:
 
-1. Runs `kirha discovery` to see the current catalogue of verticals and providers
+1. Runs `kirha discovery` to see the current catalog of verticals and providers
 2. Picks the best-matching vertical for the query dynamically (never hardcoded)
 3. Refines the user query and calls `kirha search` (or `kirha task` for deep research)
 4. Parses the structured JSON response and synthesizes the answer
